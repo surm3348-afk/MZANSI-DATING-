@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "TypingStatus": {
+      "title": "TypingStatus",
+      "description": "Real-time typing indicator status for conversations",
+      "type": "object",
+      "properties": {
+        "conversationId": {
+          "type": "string",
+          "description": "ID of the active conversation"
+        },
+        "userId": {
+          "type": "string",
+          "description": "User ID of the person typing"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Name of the person typing"
+        },
+        "isTyping": {
+          "type": "boolean",
+          "description": "Whether the user is currently typing"
+        },
+        "lastTypedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last keystroke"
+        }
+      },
+      "required": ["conversationId", "userId", "isTyping"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Chat message exchanged between users",
+      "type": "object",
+      "properties": {
+        "conversationId": {
+          "type": "string",
+          "description": "ID of the conversation"
+        },
+        "senderId": {
+          "type": "string",
+          "description": "Sender user ID"
+        },
+        "receiverId": {
+          "type": "string",
+          "description": "Receiver user ID"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text content of message",
+          "maxLength": 2000
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Formatted timestamp"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "Read receipt status"
+        }
+      },
+      "required": ["conversationId", "senderId", "receiverId"]
+    },
+    "FCMToken": {
+      "title": "FCMToken",
+      "description": "Registered FCM token for push notifications",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User ID the token belongs to"
+        },
+        "token": {
+          "type": "string",
+          "description": "FCM Device push token"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform e.g. web or android"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Registration timestamp"
+        }
+      },
+      "required": ["userId", "token"]
+    },
+    "NotificationEvent": {
+      "title": "NotificationEvent",
+      "description": "Real-time push notification event for messages and likes",
+      "type": "object",
+      "properties": {
+        "recipientUserId": {
+          "type": "string",
+          "description": "Target user ID receiving notification"
+        },
+        "senderName": {
+          "type": "string",
+          "description": "Name of user who sent message or like"
+        },
+        "senderAvatar": {
+          "type": "string",
+          "description": "Avatar of sender"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["message", "like", "superlike", "vip_request"],
+          "description": "Notification category"
+        },
+        "title": {
+          "type": "string",
+          "description": "Push notification headline"
+        },
+        "body": {
+          "type": "string",
+          "description": "Push notification body text"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Event timestamp"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "Whether user acknowledged"
+        }
+      },
+      "required": ["recipientUserId", "type", "title", "body"]
+    }
+  },
+  "firestore": {
+    "/typing_status/{statusId}": {
+      "schema": "TypingStatus",
+      "description": "Real-time indicator documents tracking which users are currently typing in a conversation"
+    },
+    "/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Persisted chat messages"
+    },
+    "/fcm_tokens/{tokenId}": {
+      "schema": "FCMToken",
+      "description": "Registered FCM device tokens for push notifications"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "NotificationEvent",
+      "description": "Real-time push notifications for new messages and likes"
+    }
+  }
+}

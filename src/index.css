@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --color-gold-light: #E0C778;
+  --color-gold-primary: #C5A253;
+  --color-gold-dark: #B78E3E;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, #E9D5FF 0%, #FBCFE8 50%, #E8C4FF 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-serif-mzansi {
+  font-family: var(--font-serif);
+}
+
+/* Gold Gradient Classes */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #C5A253 0%, #B78E3E 100%);
+}
+
+.bg-gold-gradient:hover {
+  background: linear-gradient(135deg, #D4B263 0%, #C5A253 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C5A253 0%, #B78E3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold {
+  border-color: #C5A253;
+}
+
+/* Subtle clover and sparkle floating animation */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 7s ease-in-out infinite 2s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar for mobile feel */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 162, 83, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 162, 83, 0.6);
+}

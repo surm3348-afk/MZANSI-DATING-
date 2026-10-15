@@ -1,0 +1,6 @@
+{
+  "name": "Mzansi Dating",
+  "description": "Find Love E Mzansi - Premium, classy South African dating application with verified profiles, WhatsApp-style chat, VIP creators, and gold luxury styling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
